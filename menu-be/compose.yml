@@ -1,0 +1,22 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: menudbadmin
+      POSTGRES_PASSWORD: menudbpassword
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - menu_network
+    ports:
+      - "5432:5432"
+
+networks:
+  menu_network:
+    name: "menu_network"
+    driver: bridge
+
+volumes:
+  postgres:
