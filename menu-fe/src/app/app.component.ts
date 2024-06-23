@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { HeaderComponent } from './header/header.component';
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { HeaderComponent } from "./header/header.component";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
   imports: [RouterOutlet, HeaderComponent],
   template: `
@@ -14,10 +14,10 @@ import { HeaderComponent } from './header/header.component';
   styles: ``,
 })
 export class AppComponent {
-  title = 'menu-fe';
+  title = "menu-fe";
 
   constructor(public translate: TranslateService) {
-    translate.addLangs(['en', 'hu']);
-    translate.setDefaultLang('en');
+    translate.addLangs(["en", "hu"]);
+    translate.setDefaultLang("en");
   }
 }

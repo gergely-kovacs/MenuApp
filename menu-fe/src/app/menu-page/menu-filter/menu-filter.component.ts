@@ -64,7 +64,6 @@ export class MenuFilterFormComponent {
   });
 
   onFormSubmit() {
-    console.log(this.filterForm.value);
     if (this.filterForm.valid) {
       this.filterChanged.emit(this.filterForm.value as MenuFilter);
     }

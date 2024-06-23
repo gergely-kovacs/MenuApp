@@ -1,24 +1,33 @@
-import { Injectable } from '@angular/core';
-import { z } from 'zod';
+import { Injectable } from "@angular/core";
+import { z } from "zod";
 
-const recipeScheme = z.object({
-  name: z.string(),
-  price: z.number(),
-  glutenFree: z.boolean(),
-  lactoseFree: z.boolean(),
-});
+const recipeScheme = z
+  .object({
+    id: z.number(),
+    name: z.string(),
+    price: z.string(),
+    isGlutenFree: z.boolean(),
+    isLactoseFree: z.boolean(),
+  })
+  .transform((recipe) => ({
+    id: recipe.id,
+    name: recipe.name,
+    price: Number(recipe.price),
+    glutenFree: recipe.isGlutenFree,
+    lactoseFree: recipe.isLactoseFree,
+  }));
 
 const recipesSchema = z.array(recipeScheme);
 
 export type Recipe = z.infer<typeof recipeScheme>;
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class MenuBackendService {
   async fetchRecipes() {
     try {
-      const response = await fetch(`http://localhost:3000/recipes`);
+      const response = await fetch(`http://localhost:3000/menu`);
       const recipes = await response.json();
       return recipesSchema.parse(recipes);
     } catch (error) {
